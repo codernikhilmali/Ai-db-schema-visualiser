@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── Layered Dark Surfaces ──────────────────── */
+  --color-bg-deep: #0B1020;
+  --color-panel: #111827;
+  --color-card: #182134;
+  --color-surface: #1E293B;
+
+  /* ── Borders ────────────────────────────────── */
+  --color-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-border-medium: rgba(255, 255, 255, 0.10);
+
+  /* ── Accent Palette ─────────────────────────── */
+  --color-accent: #7C5CFF;
+  --color-accent-muted: rgba(124, 92, 255, 0.15);
+  --color-relation-blue: #38BDF8;
+  --color-relation-blue-muted: rgba(56, 189, 248, 0.15);
+  --color-success: #10B981;
+  --color-success-muted: rgba(16, 185, 129, 0.15);
+  --color-warning: #F59E0B;
+  --color-danger: #EF4444;
+
+  /* ── Light Mode Surfaces ────────────────────── */
+  --color-light-bg: #F5F7FB;
+  --color-light-panel: #FFFFFF;
+  --color-light-card: #EEF2FF;
+  --color-light-border: rgba(15, 23, 42, 0.08);
+}
+
+@layer base {
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  body {
+    @apply antialiased;
+  }
+
+  /* ── Scrollbar ──────────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.06);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.12);
+  }
+}
+
+/* ── Keyframes ────────────────────────────────── */
+@keyframes subtle-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-subtle-pulse { animation: subtle-pulse 3s ease-in-out infinite; }
+.animate-spin-slow { animation: spin-slow 6s linear infinite; }
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 2s linear infinite;
+}
+
+/* ── Custom Glowing & Animated Classes ─────────── */
+@keyframes float-slow-1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+@keyframes float-slow-2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1.05); }
+  50% { transform: translate(-40px, 40px) scale(0.95); }
+}
+@keyframes float-slow-3 {
+  0%, 100% { transform: translate(0px, 0px) scale(0.9); }
+  50% { transform: translate(50px, 20px) scale(1.1); }
+}
+@keyframes shimmer-border {
+  0% { border-color: rgba(124, 92, 255, 0.4); }
+  50% { border-color: rgba(56, 189, 248, 0.4); }
+  100% { border-color: rgba(124, 92, 255, 0.4); }
+}
+
+.animate-float-1 { animation: float-slow-1 20s ease-in-out infinite; }
+.animate-float-2 { animation: float-slow-2 25s ease-in-out infinite; }
+.animate-float-3 { animation: float-slow-3 22s ease-in-out infinite; }
+.animate-shimmer-border { animation: shimmer-border 6s ease-in-out infinite; }
+
+/* ── ReactFlow Laser Paths ──────────────────────── */
+.react-flow__edge-path {
+  stroke-linecap: round;
+  transition: stroke 0.3s ease, stroke-width 0.3s ease, filter 0.3s ease !important;
+}
+
+.react-flow__edge.animated .react-flow__edge-path {
+  stroke-dasharray: 8;
+  animation: dash 1s linear infinite !important;
+}
+
+@keyframes dash {
+  from {
+    stroke-dashoffset: 16;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
