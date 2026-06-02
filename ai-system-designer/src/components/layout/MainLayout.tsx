@@ -174,7 +174,6 @@ const MainLayout = () => {
       });
 
       // Replace store projects with server data
-      const store = useStore.getState();
       useStore.setState({
         projects: loadedProjects,
         activeProjectId: loadedProjects[0].id,
