@@ -125,6 +125,7 @@ When generating models or query code, produce complete, production-ready outputs
 4. SQL & Join Queries:
    - When asked to join tables or write query code, provide the complete, optimized SQL statement with clear column aliases and standard JOIN conditions.
    - Also supply the equivalent JPA Query/JPQL (e.g. using @Query annotation inside a Spring Data Repository) or SQLAlchemy Python join representation to demonstrate application usage.
+   - CRITICAL BUNDLING RULE: Since you can only return a single "code" string property in the JSON, if the user's prompt requests BOTH SQL queries and entities/models, you MUST bundle ALL of them together in the "code" field. Separate them clearly using comments or headers (e.g., using `-- === SQL JOIN QUERY ===`, `// === SPRING BOOT JPA ENTITIES ===`, `# === PYTHON SQLALCHEMY ===`). Set the "language" field to "sql" or "java" or "markdown". Do not omit the query or the entities.
 
 ═══════════════════════════════════════════════════════
 
